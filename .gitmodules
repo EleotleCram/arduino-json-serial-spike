@@ -1,3 +1,6 @@
 [submodule "3rdparty/cJSON"]
 	path = 3rdparty/cJSON
 	url = https://github.com/EleotleCram/c-json.git
+[submodule "3rdparty/cppJSON"]
+	path = 3rdparty/cppJSON
+	url = https://github.com/EleotleCram/cpp-json.git
