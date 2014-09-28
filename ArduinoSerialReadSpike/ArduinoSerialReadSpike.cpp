@@ -24,6 +24,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	int dataLength = 256;
 	int readResult = 0;
 
+	char nextChar;
+	std::string jsonBuffer = "";
+	int curlyLevel = 0;
+
 	while(SP->IsConnected())
 	{
 		readResult = SP->ReadData(incomingData,128);
@@ -32,7 +36,27 @@ int _tmain(int argc, _TCHAR* argv[])
 		if(readResult > 0) {
 			std::string test(incomingData);
 
-			printf("%s",incomingData);
+			for(int i = 0; i < readResult; i++) {
+				nextChar = incomingData[i];
+
+				if(nextChar == '{') {
+					curlyLevel++;
+				}
+
+				if(curlyLevel > 0) {
+					jsonBuffer += nextChar;
+				}
+
+				if(nextChar == '}') {
+					curlyLevel--;
+					if(curlyLevel == 0) {
+						printf("|%s|\n\n", jsonBuffer.c_str());
+						jsonBuffer.clear();
+					}
+				}
+			}
+
+//			printf("%s",incomingData);
 			test = "";
 		}
 
