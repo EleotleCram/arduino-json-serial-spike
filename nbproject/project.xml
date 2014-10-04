@@ -10,7 +10,7 @@
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>/home/mtoele/GitRepositories/Arduino/x86/ArduinoSerialReadSpike</sourceRootElem>
+                <sourceRootElem>.</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
