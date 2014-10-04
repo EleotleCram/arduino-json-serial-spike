@@ -5,4 +5,7 @@
 // If you wish to build your application for a previous Windows platform, include WinSDKVer.h and
 // set the _WIN32_WINNT macro to the platform you wish to support before including SDKDDKVer.h.
 
+// Gets rid of the message: _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+#define _WIN32_WINNT 0x0501
+
 #include <SDKDDKVer.h>
