@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
-    <df root="/home/mtoele/GitRepositories/Arduino/x86/ArduinoSerialReadSpike"
-        name="0">
+    <df root="." name="0">
       <df name="3rdparty">
         <df name="cJSON">
           <in>cJSON.c</in>
@@ -29,14 +28,14 @@
                    displayName="Important Files"
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
-      <itemPath>/home/mtoele/GitRepositories/Arduino/x86/ArduinoSerialReadSpike/Makefile</itemPath>
+      <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
   <sourceRootList>
-    <Elem>/home/mtoele/GitRepositories/Arduino/x86/ArduinoSerialReadSpike</Elem>
+    <Elem>.</Elem>
   </sourceRootList>
-  <projectmakefile>/home/mtoele/GitRepositories/Arduino/x86/ArduinoSerialReadSpike/Makefile</projectmakefile>
+  <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="Default" type="0">
       <toolsSet>
@@ -44,14 +43,11 @@
         <dependencyChecking>false</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
-      <flagsDictionary>
-        <element flagsID="0" commonFlags="-std=c++0x"/>
-      </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
       <makefileType>
         <makeTool>
-          <buildCommandWorkingDir>/home/mtoele/GitRepositories/Arduino/x86/ArduinoSerialReadSpike</buildCommandWorkingDir>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
           <buildCommand>${MAKE} -f Makefile</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
           <executablePath></executablePath>
@@ -63,36 +59,9 @@
           </ccTool>
         </makeTool>
       </makefileType>
-      <item path="/home/mtoele/GitRepositories/Arduino/x86/ArduinoSerialReadSpike/3rdparty/cJSON/cJSON.c"
-            ex="false"
-            tool="1"
-            flavor2="8">
+      <item path="3rdparty/cJSON/cJSON.c" ex="false" tool="1" flavor2="8">
       </item>
-      <item path="/home/mtoele/GitRepositories/Arduino/x86/ArduinoSerialReadSpike/3rdparty/cppJSON/cppJSON.cpp"
-            ex="false"
-            tool="1"
-            flavor2="8">
-      </item>
-      <item path="/home/mtoele/GitRepositories/Arduino/x86/ArduinoSerialReadSpike/3rdparty/libCereal/win32/EnumSerial.cpp"
-            ex="false"
-            tool="1"
-            flavor2="8">
-        <ccTool flags="0">
-        </ccTool>
-      </item>
-      <item path="/home/mtoele/GitRepositories/Arduino/x86/ArduinoSerialReadSpike/3rdparty/libCereal/win32/Serial.cpp"
-            ex="false"
-            tool="1"
-            flavor2="8">
-        <ccTool flags="0">
-        </ccTool>
-      </item>
-      <item path="/home/mtoele/GitRepositories/Arduino/x86/ArduinoSerialReadSpike/ArduinoSerialReadSpike/ArduinoSerialReadSpike.cpp"
-            ex="false"
-            tool="1"
-            flavor2="8">
-        <ccTool flags="0">
-        </ccTool>
+      <item path="3rdparty/cppJSON/cppJSON.cpp" ex="false" tool="1" flavor2="8">
       </item>
       <item path="3rdparty/libCereal/Serial.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -100,6 +69,21 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="3rdparty/libCereal/win32/EnumSerial.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+      </item>
+      <item path="3rdparty/libCereal/win32/Serial.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+      </item>
+      <item path="ArduinoSerialReadSpike/ArduinoSerialReadSpike.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
       </item>
     </conf>
   </confs>
