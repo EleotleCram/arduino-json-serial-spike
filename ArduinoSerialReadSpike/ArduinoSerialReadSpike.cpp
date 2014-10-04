@@ -1,67 +1,71 @@
 // ArduinoSerialReadSpike.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+#ifdef WIN32
+#include <tchar.h>
+#endif
 
 #include <stdio.h>
-#include <tchar.h>
-#include "Serial.h"	// Library described above
+#include <stdint.h>
+#include <iostream>
 #include <string>
+#include <vector>
+#include <functional>
 
+#include <cppJSON/cppJSON.h>
+#include <libCereal/Serial.h>
 
+// define sleep
+#ifdef WIN32
+static inline void sleep(int msec) {
+	Sleep(msec);
+}
+#else
+static inline void sleep(int msec) {
+	usleep(msec * 1000);
+}
+#endif
 
+// define DEVICE_NAME
+#ifdef WIN32
+#define DEVICE_NAME "USB-SERIAL CH340"
+#else
+#define DEVICE_NAME "/dev/ttyUSB0"
+#endif
+
+// define main proto
+#ifdef WIN32
 int _tmain(int argc, _TCHAR* argv[])
+#else
+int main(int argc, char** argv)
+#endif
 {
-	printf("Welcome to the serial test app!\n\n");
+	printf("-=- ArduinoSerialReadSpike -=-\n\n");
 
-	Serial* SP = new Serial("COM3");    // adjust as needed
+	Serial serial = Serial(DEVICE_NAME);
 
-	if (SP->IsConnected())
-		printf("We're connected");
+	if (serial.isConnected()) {
+		printf("Connected to arduino\n");
+	}
 
-	char incomingData[256] = "";			// don't forget to pre-allocate memory
-	//printf("%s\n",incomingData);
-	int dataLength = 256;
-	int readResult = 0;
+	std::function<int(char*, size_t)> readFromSerialPort = [&] (char* buf, size_t bufSize) -> int {
+		return serial.read(buf, bufSize);
+	};
+	cppJSONReader jsonReader = cppJSONReader(readFromSerialPort);
 
-	char nextChar;
-	std::string jsonBuffer = "";
-	int curlyLevel = 0;
+	while(serial.isConnected()) {
+		std::vector<std::unique_ptr<cppJSON>> jsonObjects = jsonReader.read();
 
-	while(SP->IsConnected())
-	{
-		readResult = SP->ReadData(incomingData,128);
-//		printf("Bytes read: (-1 means no data available) %i\n",readResult);
-
-		if(readResult > 0) {
-			std::string test(incomingData);
-
-			for(int i = 0; i < readResult; i++) {
-				nextChar = incomingData[i];
-
-				if(nextChar == '{') {
-					curlyLevel++;
-				}
-
-				if(curlyLevel > 0) {
-					jsonBuffer += nextChar;
-				}
-
-				if(nextChar == '}') {
-					curlyLevel--;
-					if(curlyLevel == 0) {
-						printf("|%s|\n\n", jsonBuffer.c_str());
-						jsonBuffer.clear();
-					}
-				}
-			}
-
-//			printf("%s",incomingData);
-			test = "";
+		if(jsonObjects.size() > 0) {
+			printf("got %lu JSON objects:\n", jsonObjects.size());
 		}
 
-		Sleep(100);
+		for(unsigned int i = 0; i < jsonObjects.size(); i++) {
+			printf("azimuth: %d\n", jsonObjects[i]->get("azimuth").getInt());
+		}
+
+		sleep(100);
 	}
+
 	return 0;
 }
-
