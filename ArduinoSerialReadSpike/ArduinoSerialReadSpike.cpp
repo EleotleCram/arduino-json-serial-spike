@@ -57,11 +57,21 @@ int main(int argc, char** argv)
 		std::vector<std::unique_ptr<cppJSON>> jsonObjects = jsonReader.read();
 
 		if(jsonObjects.size() > 0) {
-			printf("got %lu JSON objects:\n", jsonObjects.size());
+			printf("\ngot %lu JSON objects:\n", jsonObjects.size());
+			printf(".----------------------------------.\n");
+			printf("|  azimuth  |  altitude  |  twist  |\n");
 		}
 
 		for(unsigned int i = 0; i < jsonObjects.size(); i++) {
-			printf("azimuth: %d\n", jsonObjects[i]->get("azimuth").getInt());
+			printf("|   %4d    |    %4d    |  %4d   |\n",
+				jsonObjects[i]->get("azimuth").getInt(),
+				jsonObjects[i]->get("altitude").getInt(),
+				jsonObjects[i]->get("twist").getInt()
+			);
+		}
+
+		if(jsonObjects.size() > 0) {
+			printf("`----------------------------------'\n");
 		}
 
 		sleep(100);
