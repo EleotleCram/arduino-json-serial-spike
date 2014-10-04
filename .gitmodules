@@ -4,3 +4,6 @@
 [submodule "3rdparty/cppJSON"]
 	path = 3rdparty/cppJSON
 	url = https://github.com/EleotleCram/cpp-json.git
+[submodule "3rdparty/libCereal"]
+	path = 3rdparty/libCereal
+	url = https://github.com/EleotleCram/libcereal.git
